@@ -185,7 +185,7 @@
             margin-bottom: 25px;
         }
         
-        /* جاليري عرض الصور بالكامل بدون قص (contain) */
+        /* جاليري عرض الصور */
         .slider-container {
             position: relative;
             width: 100%;
@@ -194,7 +194,7 @@
             border-radius: 15px;
             overflow: hidden;
             border: 2px solid rgba(255,255,255,0.2);
-            background: #050507; /* خلفية متناسقة تظهر وراء الصور غير المربعة */
+            background: #050507;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -202,8 +202,13 @@
         .slider-container img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* تعديل يضمن ظهور الصورة كاملة بدون أي قص */
+            object-fit: contain;
             display: none;
+            cursor: pointer; /* مؤشر الماوس بيبان إنها قابلة للضغط */
+            transition: transform 0.2s;
+        }
+        .slider-container img:hover {
+            transform: scale(1.02);
         }
         .slider-container img.active-img {
             display: block;
@@ -235,6 +240,55 @@
             background: #ff758c;
         }
 
+        /* شاشة التكبير المنبثقة (Lightbox Modal) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255, 117, 140, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .close-modal:hover {
+            background: #ff758c;
+        }
+        .modal-hint {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
         .final-msg {
             font-size: 24px;
             font-weight: bold;
@@ -255,6 +309,12 @@
 
     <div class="bg-image"></div>
     <div class="overlay"></div>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img id="modalImg" src="" alt="Zoomed">
+        <div class="modal-hint">اضغط في أي مكان لإغلاق التكبير</div>
+    </div>
 
     <div class="wrapper">
         <div class="card" id="loginCard">
@@ -292,17 +352,18 @@
 
             <div class="step-content" id="step4">
                 <h2>📸 ذكرياتنا الحلوة</h2>
+                <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">(اضغط على أي صورة لتكبيرها)</p>
                 <div class="slider-container">
-                    <img src="https://i.postimg.cc/pmGFhJtD/d3a4827d-ae5e-4c6f-b892-b63fc4f993d4.jpg" class="active-img" alt="1">
-                    <img src="https://i.postimg.cc/hzbxjW4Q/IMG-1965.jpg" alt="2">
-                    <img src="https://i.postimg.cc/K3GT3q4j/IMG-1966.jpg" alt="3">
-                    <img src="https://i.postimg.cc/ZBF3RtYY/IMG-1970.jpg" alt="4">
-                    <img src="https://i.postimg.cc/grVLqWWZ/IMG-1972.jpg" alt="5">
-                    <img src="https://i.postimg.cc/1Vrg9pHK/IMG-2979.jpg" alt="6">
-                    <img src="https://i.postimg.cc/BtTPc006/IMG-3825.jpg" alt="7">
-                    <img src="https://i.postimg.cc/CdGnHgV9/IMG-3831.jpg" alt="8">
-                    <img src="https://i.postimg.cc/hJX79QDg/IMG-3841.jpg" alt="9">
-                    <img src="https://i.postimg.cc/RNmfj0RZ/IMG-3858.jpg" alt="10">
+                    <img src="https://i.postimg.cc/pmGFhJtD/d3a4827d-ae5e-4c6f-b892-b63fc4f993d4.jpg" class="active-img" alt="1" onclick="openModal(this)">
+                    <img src="https://i.postimg.cc/hzbxjW4Q/IMG-1965.jpg" alt="2" onclick="openModal(this)">
+                    <img src="https://i.postimg.cc/K3GT3q4j/IMG-1966.jpg" alt="3" onclick="openModal(this)">
+                    <img src="https://i.postimg.cc/ZBF3RtYY/IMG-1970.jpg" alt="4" onclick="openModal(this)">
+                    <img src="https://i.postimg.cc/grVLqWWZ/IMG-1972.jpg" alt="5" onclick="openModal(this)">
+                    <img src="https://i.postimg.cc/1Vrg9pHK/IMG-2979.jpg" alt="6" onclick="openModal(this)">
+                    <img src="https://i.postimg.cc/BtTPc006/IMG-3825.jpg" alt="7" onclick="openModal(this)">
+                    <img src="https://i.postimg.cc/CdGnHgV9/IMG-3831.jpg" alt="8" onclick="openModal(this)">
+                    <img src="https://i.postimg.cc/hJX79QDg/IMG-3841.jpg" alt="9" onclick="openModal(this)">
+                    <img src="https://i.postimg.cc/RNmfj0RZ/IMG-3858.jpg" alt="10" onclick="openModal(this)">
                     <div class="slider-btns">
                         <button onclick="prevImage()">❮</button>
                         <button onclick="nextImage()">❯</button>
@@ -404,6 +465,18 @@
         function prevImage() {
             currentImg = (currentImg - 1 + images.length) % images.length;
             showImage(currentImg);
+        }
+
+        // دوال فتح وإغلاق نافذة التكبير
+        function openModal(imgElement) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImg");
+            modal.style.display = "flex";
+            modalImg.src = imgElement.src;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
         }
     </script>
 </body>
