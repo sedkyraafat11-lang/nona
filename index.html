@@ -185,7 +185,7 @@
             margin-bottom: 25px;
         }
         
-        /* جاليري عرض الصور */
+        /* جاليري الصور الأساسي */
         .slider-container {
             position: relative;
             width: 100%;
@@ -204,7 +204,7 @@
             max-height: 100%;
             object-fit: contain;
             display: none;
-            cursor: pointer; /* مؤشر الماوس بيبان إنها قابلة للضغط */
+            cursor: pointer;
             transition: transform 0.2s;
         }
         .slider-container img:hover {
@@ -240,7 +240,7 @@
             background: #ff758c;
         }
 
-        /* شاشة التكبير المنبثقة (Lightbox Modal) */
+        /* نافذة التكبير بحجم الموبايل بالكامل (Fullscreen Modal) */
         .modal {
             display: none;
             position: fixed;
@@ -249,44 +249,73 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            animation: fadeIn 0.3s ease;
+        }
+        .modal-content-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 15px 40px 15px;
         }
         .modal img {
-            max-width: 90%;
-            max-height: 80vh;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
-            border-radius: 10px;
-            box-shadow: 0 0 25px rgba(255, 117, 140, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255, 117, 140, 0.4);
         }
+        /* أزرار التقليب الخاصة بنافذة التكبير */
+        .modal-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+        }
+        .modal-nav-btn:hover {
+            background: #ff758c;
+        }
+        .modal-prev { right: 15px; }
+        .modal-next { left: 15px; }
+
         .close-modal {
             position: absolute;
-            top: 20px;
-            left: 30px;
+            top: 15px;
+            left: 20px;
             color: #fff;
             font-size: 35px;
             font-weight: bold;
             cursor: pointer;
-            background: rgba(0,0,0,0.5);
-            width: 50px;
-            height: 50px;
+            background: rgba(255,255,255,0.15);
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 10001;
             transition: 0.3s;
         }
         .close-modal:hover {
-            background: #ff758c;
-        }
-        .modal-hint {
-            color: rgba(255,255,255,0.7);
-            font-size: 14px;
-            margin-top: 15px;
+            background: #ff5252;
         }
 
         .final-msg {
@@ -310,10 +339,13 @@
     <div class="bg-image"></div>
     <div class="overlay"></div>
 
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close-modal">&times;</span>
-        <img id="modalImg" src="" alt="Zoomed">
-        <div class="modal-hint">اضغط في أي مكان لإغلاق التكبير</div>
+    <div id="imageModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-content-wrapper">
+            <button class="modal-nav-btn modal-prev" onclick="modalPrevImage()">❮</button>
+            <img id="modalImg" src="" alt="Fullscreen Zoom">
+            <button class="modal-nav-btn modal-next" onclick="modalNextImage()">❯</button>
+        </div>
     </div>
 
     <div class="wrapper">
@@ -352,18 +384,18 @@
 
             <div class="step-content" id="step4">
                 <h2>📸 ذكرياتنا الحلوة</h2>
-                <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">(اضغط على أي صورة لتكبيرها)</p>
+                <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">(اضغط على أي صورة لتكبيرها وملء الشاشة)</p>
                 <div class="slider-container">
-                    <img src="https://i.postimg.cc/pmGFhJtD/d3a4827d-ae5e-4c6f-b892-b63fc4f993d4.jpg" class="active-img" alt="1" onclick="openModal(this)">
-                    <img src="https://i.postimg.cc/hzbxjW4Q/IMG-1965.jpg" alt="2" onclick="openModal(this)">
-                    <img src="https://i.postimg.cc/K3GT3q4j/IMG-1966.jpg" alt="3" onclick="openModal(this)">
-                    <img src="https://i.postimg.cc/ZBF3RtYY/IMG-1970.jpg" alt="4" onclick="openModal(this)">
-                    <img src="https://i.postimg.cc/grVLqWWZ/IMG-1972.jpg" alt="5" onclick="openModal(this)">
-                    <img src="https://i.postimg.cc/1Vrg9pHK/IMG-2979.jpg" alt="6" onclick="openModal(this)">
-                    <img src="https://i.postimg.cc/BtTPc006/IMG-3825.jpg" alt="7" onclick="openModal(this)">
-                    <img src="https://i.postimg.cc/CdGnHgV9/IMG-3831.jpg" alt="8" onclick="openModal(this)">
-                    <img src="https://i.postimg.cc/hJX79QDg/IMG-3841.jpg" alt="9" onclick="openModal(this)">
-                    <img src="https://i.postimg.cc/RNmfj0RZ/IMG-3858.jpg" alt="10" onclick="openModal(this)">
+                    <img src="https://i.postimg.cc/pmGFhJtD/d3a4827d-ae5e-4c6f-b892-b63fc4f993d4.jpg" class="active-img" alt="1" onclick="openModal(0)">
+                    <img src="https://i.postimg.cc/hzbxjW4Q/IMG-1965.jpg" alt="2" onclick="openModal(1)">
+                    <img src="https://i.postimg.cc/K3GT3q4j/IMG-1966.jpg" alt="3" onclick="openModal(2)">
+                    <img src="https://i.postimg.cc/ZBF3RtYY/IMG-1970.jpg" alt="4" onclick="openModal(3)">
+                    <img src="https://i.postimg.cc/grVLqWWZ/IMG-1972.jpg" alt="5" onclick="openModal(4)">
+                    <img src="https://i.postimg.cc/1Vrg9pHK/IMG-2979.jpg" alt="6" onclick="openModal(5)">
+                    <img src="https://i.postimg.cc/BtTPc006/IMG-3825.jpg" alt="7" onclick="openModal(6)">
+                    <img src="https://i.postimg.cc/CdGnHgV9/IMG-3831.jpg" alt="8" onclick="openModal(7)">
+                    <img src="https://i.postimg.cc/hJX79QDg/IMG-3841.jpg" alt="9" onclick="openModal(8)">
+                    <img src="https://i.postimg.cc/RNmfj0RZ/IMG-3858.jpg" alt="10" onclick="openModal(9)">
                     <div class="slider-btns">
                         <button onclick="prevImage()">❮</button>
                         <button onclick="nextImage()">❯</button>
@@ -467,16 +499,29 @@
             showImage(currentImg);
         }
 
-        // دوال فتح وإغلاق نافذة التكبير
-        function openModal(imgElement) {
+        // دوال التحكم بنافذة التكبير بكامل الشاشة مع إمكانية التقليب بداخله
+        function openModal(index) {
+            currentImg = index;
             const modal = document.getElementById("imageModal");
             const modalImg = document.getElementById("modalImg");
             modal.style.display = "flex";
-            modalImg.src = imgElement.src;
+            modalImg.src = images[currentImg].src;
         }
 
         function closeModal() {
             document.getElementById("imageModal").style.display = "none";
+        }
+
+        function modalNextImage() {
+            currentImg = (currentImg + 1) % images.length;
+            document.getElementById("modalImg").src = images[currentImg].src;
+            showImage(currentImg); // تحديث خلف السلايدر أيضاً
+        }
+
+        function modalPrevImage() {
+            currentImg = (currentImg - 1 + images.length) % images.length;
+            document.getElementById("modalImg").src = images[currentImg].src;
+            showImage(currentImg); // تحديث خلف السلايدر أيضاً
         }
     </script>
 </body>
