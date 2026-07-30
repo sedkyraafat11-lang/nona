@@ -24,39 +24,29 @@
             position: relative;
         }
 
-        /* خلفية الصور المتحركة بالكامل في الموقع */
-        .bg-slideshow {
+        /* خلفية الموقع المأخوذة من الصورة المرفوعة مع تأثير الـ Blur */
+        .bg-image {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-image: url('image.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px) brightness(0.45); /* تغبيش وتغميش عشان وضوح النص */
+            transform: scale(1.1);
             z-index: -2;
         }
-        .bg-slideshow img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            filter: blur(8px) brightness(0.4); /* تبييض أو تغميش خفيف لتبان الكتابة فوقها */
-            transform: scale(1.1);
-        }
-        .bg-slideshow img.active-bg {
-            opacity: 1;
-        }
 
-        /* طبقة عتمة إضافية فوق الخلفية لتوضيح النصوص */
+        /* طبقة عتمة إضافية تزيد التنسيق */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(0, 0, 0, 0.4);
             z-index: -1;
         }
 
@@ -66,9 +56,9 @@
             z-index: 2;
         }
         
-        /* الكرت الفخم الشفاف (Glassmorphism) */
+        /* الكرت الفخم الشفاف */
         .card {
-            background: rgba(20, 15, 25, 0.65);
+            background: rgba(20, 15, 25, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 40px 25px;
             border-radius: 24px;
@@ -261,16 +251,7 @@
 </head>
 <body>
 
-    <div class="bg-slideshow" id="bgSlideshow">
-        <img src="image_6.png" class="active-bg" alt="bg1">
-        <img src="image_7.png" alt="bg2">
-        <img src="image_8.png" alt="bg3">
-        <img src="image_9.png" alt="bg4">
-        <img src="image_10.png" alt="bg5">
-        <img src="image_11.png" alt="bg6">
-        <img src="image_12.png" alt="bg7">
-        <img src="image_13.png" alt="bg8">
-    </div>
+    <div class="bg-image"></div>
     <div class="overlay"></div>
 
     <div class="wrapper">
@@ -341,23 +322,12 @@
     </audio>
 
     <script>
-        // خلفية الصور المتحركة التلقائية
-        const bgImages = document.querySelectorAll('.bg-slideshow img');
-        let currentBgIndex = 0;
-        setInterval(() => {
-            bgImages[currentBgIndex].classList.remove('active-bg');
-            currentBgIndex = (currentBgIndex + 1) % bgImages.length;
-            bgImages[currentBgIndex].classList.add('active-bg');
-        }, 4000); // تتقلب كل 4 ثواني
-
-        // التحقق من كلمة السر
         function checkPassword() {
             const pass = document.getElementById('passInput').value;
             if (pass === "nona") {
                 document.getElementById('loginCard').style.display = 'none';
                 document.getElementById('mainCard').style.display = 'block';
                 
-                // تشغيل الأغنية
                 var song = document.getElementById("loveSong");
                 song.play().catch(e => console.log("Audio play blocked"));
             } else {
@@ -365,7 +335,6 @@
             }
         }
 
-        // إدارة الخطوات (السلايدر)
         let currentStep = 1;
         const totalSteps = 5;
 
@@ -381,7 +350,6 @@
             }
         }
 
-        // تأثير الكتابة الآلية للرسالة
         const message = `كل سنة وانتي طيبة يا نونتي وفي عيد ميلادك حبيت اقولك كل سنة وانتي معايا وكل سنة وانتي نور عيني وكل سنة وانتي قلبي وعقلي يا وردة اغسطس يا احلي صدفة جابتها ليا الدنيا وربنا بعتها ليا ويحقق ليكي كل اللي بتتمنيه يا حظ ايامي ويا حظ قلبي يوم ما عرفك 15/4/2026. 
 
 وجودك خلي لحياتي نور ومخلي حياتي كلها طاقه يا مصدر طاقتي ومصدر سعادتي ومش هنسي اول يوم قولت اكلمك 25/5/2026 وقولتي هعطل وكلمتك والحمدلله معطلتيش بجد وجودك غير حياتي للاحسن واحلي حاجة حصلت اني عرفتك يا هدية ربنا ليا ومش هنسي اول يوم قبلتك 28/5/2026 كان احلي يوم في حياتي لما شوفت حلاوتك وروحك القمر في عيونك وتقولي متبصش بس اقولك انا ابص براحتي كدا كدا بجد يوم ميلادك يوم ما الدنيا بقي ليها معني ولما ربنا بعتك ليا حياتي بقت ملك الدنيا يمززززتي بحبك يا نونتي وكل سنة وانتي طيبة وعبال سنين كتيره جاية وكدا كدا سوووو يا جزمة ياللي شندلتي قلبي بضحكتك وخطفتي قلبي بس بجد قلبي مبسوط :) انك انتي اللي خطفتيه بحبك يا نونتي تتتي ❤️`;
@@ -401,7 +369,6 @@
             typeWriter();
         }
 
-        // عداد الوقت
         const startDate = new Date("2026-04-15T00:00:00");
         function updateTimer() {
             const now = new Date();
@@ -417,7 +384,6 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // تقليب الصور (داخل الكرت)
         const images = document.querySelectorAll('.slider-container img');
         let currentImg = 0;
 
