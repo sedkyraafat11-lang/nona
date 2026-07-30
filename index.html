@@ -21,18 +21,58 @@
             color: #fff;
             padding: 20px;
             overflow-x: hidden;
+            position: relative;
         }
+
+        /* خلفية الصور المتحركة بالكامل في الموقع */
+        .bg-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        .bg-slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            filter: blur(8px) brightness(0.4); /* تبييض أو تغميش خفيف لتبان الكتابة فوقها */
+            transform: scale(1.1);
+        }
+        .bg-slideshow img.active-bg {
+            opacity: 1;
+        }
+
+        /* طبقة عتمة إضافية فوق الخلفية لتوضيح النصوص */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: -1;
+        }
+
         .wrapper {
             width: 100%;
             max-width: 550px;
+            z-index: 2;
         }
-        /* تصميم الجواب الأولي */
+        
+        /* الكرت الفخم الشفاف (Glassmorphism) */
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(20, 15, 25, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 40px 25px;
             border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(15px);
             text-align: center;
             animation: fadeIn 0.8s ease;
@@ -41,6 +81,7 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
         .envelope-graphic {
             background: rgba(255, 255, 255, 0.08);
             width: 170px;
@@ -81,6 +122,7 @@
             50% { transform: scale(1.15); }
             100% { transform: scale(1); }
         }
+        
         input {
             padding: 14px 20px;
             width: 85%;
@@ -90,9 +132,10 @@
             text-align: center;
             font-size: 16px;
             outline: none;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             color: #fff;
         }
+        
         .btn {
             padding: 12px 30px;
             border-radius: 30px;
@@ -111,7 +154,6 @@
             transform: translateY(-2px);
         }
         
-        /* الخطوات (Steps) */
         .step-content {
             display: none;
             text-align: center;
@@ -120,41 +162,46 @@
         .active-step {
             display: block;
         }
+        
         h2 {
             color: #ff758c;
             font-size: 24px;
             margin-bottom: 20px;
             text-shadow: 0 0 10px rgba(255,117,140,0.3);
         }
+        
         .typed-message {
-            font-size: 16px;
-            line-height: 2;
+            font-size: 15px;
+            line-height: 1.9;
             color: rgba(255, 255, 255, 0.95);
-            background: rgba(0, 0, 0, 0.25);
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 18px;
             border-radius: 15px;
             border: 1px solid rgba(255,255,255,0.1);
             text-align: right;
-            min-height: 180px;
+            min-height: 170px;
+            max-height: 250px;
+            overflow-y: auto;
             white-space: pre-line;
             margin-bottom: 20px;
         }
+        
         .timer-box {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: bold;
             color: #ffeb3b;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.4);
             padding: 20px;
             border-radius: 15px;
             border: 1px dashed rgba(255,235,59,0.4);
             margin-bottom: 25px;
         }
         
-        /* معرض الصور المخصص للتقليب */
+        /* جاليري الصور المصغر للتقليب */
         .slider-container {
             position: relative;
             width: 100%;
-            height: 280px;
+            height: 260px;
             margin-bottom: 20px;
             border-radius: 15px;
             overflow: hidden;
@@ -182,7 +229,7 @@
         }
         .slider-btns button {
             pointer-events: auto;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
             color: #fff;
             border: none;
             width: 35px;
@@ -197,11 +244,11 @@
         }
 
         .final-msg {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: bold;
             color: #ff758c;
             line-height: 1.8;
-            margin: 30px 0;
+            margin: 25px 0;
             text-shadow: 0 0 15px rgba(255,117,140,0.5);
         }
         #errorMsg {
@@ -214,13 +261,25 @@
 </head>
 <body>
 
+    <div class="bg-slideshow" id="bgSlideshow">
+        <img src="image_6.png" class="active-bg" alt="bg1">
+        <img src="image_7.png" alt="bg2">
+        <img src="image_8.png" alt="bg3">
+        <img src="image_9.png" alt="bg4">
+        <img src="image_10.png" alt="bg5">
+        <img src="image_11.png" alt="bg6">
+        <img src="image_12.png" alt="bg7">
+        <img src="image_13.png" alt="bg8">
+    </div>
+    <div class="overlay"></div>
+
     <div class="wrapper">
         <div class="card" id="loginCard">
             <div class="envelope-graphic">
                 <div class="heart-seal">💖</div>
             </div>
             <h2 style="font-size: 20px; margin-bottom: 5px;">هدية خاصة جداً لـ نونا 💌</h2>
-            <p style="color: rgba(255,255,255,0.6); font-size: 13px; margin-bottom: 20px;">اكتبي كلمة السر لفتح سحر الهدية</p>
+            <p style="color: rgba(255,255,255,0.7); font-size: 13px; margin-bottom: 20px;">اكتبي كلمة السر لفتح سحر الهدية</p>
             <input type="password" id="passInput" placeholder="اكتبي كلمة السر هنا...">
             <br>
             <button class="btn" onclick="checkPassword()">دخول 🤍</button>
@@ -231,7 +290,7 @@
             
             <div class="step-content active-step" id="step1">
                 <h2>🎉 مفاجأة ليكِ يا نونتي</h2>
-                <p style="font-size: 22px; margin: 40px 0; color: #ff758c; font-weight: bold;">Happy birthday NoNa ♥️</p>
+                <p style="font-size: 22px; margin: 35px 0; color: #ff758c; font-weight: bold; text-shadow: 0 0 10px rgba(255,117,140,0.5);">Happy birthday NoNa ♥️</p>
                 <button class="btn" onclick="nextStep()">التالي ✨</button>
             </div>
 
@@ -243,7 +302,7 @@
 
             <div class="step-content" id="step3">
                 <h2>⏳ مدة علاقتنا معاً</h2>
-                <p style="font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 15px;">من أول يوم عرفتك فيه (15/4/2026)</p>
+                <p style="font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 12px;">من أول يوم عرفتك فيه (15/4/2026)</p>
                 <div class="timer-box" id="timeTogether">جاري الحساب...</div>
                 <button class="btn" onclick="nextStep()">التالي ✨</button>
             </div>
@@ -271,7 +330,7 @@
                 <div class="final-msg">
                     انا بحبك يا حياتي ودايما سوووا ♥️😘
                 </div>
-                <p style="color: rgba(255,255,255,0.6); margin-top: 20px;">كل سنة وأنتي منورة حياتي وعيد ميلاد سعيد يا أجمل نونا!</p>
+                <p style="color: rgba(255,255,255,0.8); margin-top: 15px; font-size: 15px;">كل سنة وأنتي منورة حياتي وعيد ميلاد سعيد يا أجمل نونا!</p>
             </div>
 
         </div>
@@ -282,6 +341,15 @@
     </audio>
 
     <script>
+        // خلفية الصور المتحركة التلقائية
+        const bgImages = document.querySelectorAll('.bg-slideshow img');
+        let currentBgIndex = 0;
+        setInterval(() => {
+            bgImages[currentBgIndex].classList.remove('active-bg');
+            currentBgIndex = (currentBgIndex + 1) % bgImages.length;
+            bgImages[currentBgIndex].classList.add('active-bg');
+        }, 4000); // تتقلب كل 4 ثواني
+
         // التحقق من كلمة السر
         function checkPassword() {
             const pass = document.getElementById('passInput').value;
@@ -307,7 +375,6 @@
             if (currentStep <= totalSteps) {
                 document.getElementById(`step${currentStep}`).classList.add('active-step');
                 
-                // لو دخلنا خطوة الرسالة، نبدأ تأثير الكتابة الآلية
                 if (currentStep === 2 && !isTyped) {
                     startTyping();
                 }
@@ -317,13 +384,13 @@
         // تأثير الكتابة الآلية للرسالة
         const message = `كل سنة وانتي طيبة يا نونتي وفي عيد ميلادك حبيت اقولك كل سنة وانتي معايا وكل سنة وانتي نور عيني وكل سنة وانتي قلبي وعقلي يا وردة اغسطس يا احلي صدفة جابتها ليا الدنيا وربنا بعتها ليا ويحقق ليكي كل اللي بتتمنيه يا حظ ايامي ويا حظ قلبي يوم ما عرفك 15/4/2026. 
 
-وجودك خلي لحياتي نور ومخلي حياتي كلها طاقه يا مصدر طاقتي ومصدر سعادتي ومش هنسي اول يوم قولت اكلمك 25/5/2026 وقولتي هعطل وكلمتك والحمدلله معطلتيش بجد وجودك غير حياتي للاحسن واحلي حاجة حصلت اني عرفتك يا هدية ربنا ليا ومش هنسي اول يوم قبلتك 28/5/2026 كان احلي يوم في حياتي لما شوفت حلاوتك وروحك القمر في عيونك وتقولي متبصش بس اقولك انا ابص براحتي كدا كدا بجد يوم ميلادك يوم ما الدنيا بقي ليها معني ولما ربنا بعتك ليا حياتي بقت ملك الدنيا يمززززتي بحبك يا نونتي وكل سنة وانتي طيبة وعبال سنين كتيره جاية وكدا كدا سوووو يا جزمة ياللي شندلتي قلبي بضحكتك وخطفتي قلبي بس بجد قلبي مبسوط :) انك انتي اللي خطفتيه بحبك يا نونتيتتي ❤️`;
+وجودك خلي لحياتي نور ومخلي حياتي كلها طاقه يا مصدر طاقتي ومصدر سعادتي ومش هنسي اول يوم قولت اكلمك 25/5/2026 وقولتي هعطل وكلمتك والحمدلله معطلتيش بجد وجودك غير حياتي للاحسن واحلي حاجة حصلت اني عرفتك يا هدية ربنا ليا ومش هنسي اول يوم قبلتك 28/5/2026 كان احلي يوم في حياتي لما شوفت حلاوتك وروحك القمر في عيونك وتقولي متبصش بس اقولك انا ابص براحتي كدا كدا بجد يوم ميلادك يوم ما الدنيا بقي ليها معني ولما ربنا بعتك ليا حياتي بقت ملك الدنيا يمززززتي بحبك يا نونتي وكل سنة وانتي طيبة وعبال سنين كتيره جاية وكدا كدا سوووو يا جزمة ياللي شندلتي قلبي بضحكتك وخطفتي قلبي بس بجد قلبي مبسوط :) انك انتي اللي خطفتيه بحبك يا نونتي تتتي ❤️`;
 
         let isTyped = false;
         function startTyping() {
             isTyped = true;
             let i = 0;
-            const speed = 25; // سرعة الكتابة
+            const speed = 25;
             function typeWriter() {
                 if (i < message.length) {
                     document.getElementById("typedText").innerHTML += message.charAt(i);
@@ -350,7 +417,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // تقليب الصور
+        // تقليب الصور (داخل الكرت)
         const images = document.querySelectorAll('.slider-container img');
         let currentImg = 0;
 
