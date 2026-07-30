@@ -28,19 +28,11 @@
             max-width: 500px;
             margin: 20px;
         }
-        /* تصميم الجواب المقفول */
-        .envelope-container {
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .envelope-container:hover {
-            transform: scale(1.05);
-        }
         .envelope {
             background: #fff;
             width: 140px;
             height: 100px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 15px auto;
             position: relative;
             border-radius: 5px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -130,14 +122,14 @@
 
     <!-- شاشة الجواب الأولية -->
     <div class="box" id="envelopeBox">
-        <div class="envelope-container" onclick="openEnvelope()">
+        <div id="envelopeContainer">
             <div class="envelope">
                 <div class="heart-seal">💖</div>
             </div>
-            <h2>اضغطي هنا لفتح الجواب 💌</h2>
+            <button onclick="openEnvelope()">افتحي الجواب 💌</button>
         </div>
 
-        <!-- خانة كلمة السر تظهر عند النقر على الجواب -->
+        <!-- خانة كلمة السر تظهر عند النقر على الزر -->
         <div class="login-section" id="loginSection">
             <h2>🎁 هدية خاصة جداً</h2>
             <p>اكتبي كلمة السر الخاصة بنا لفتح الهدية:</p>
@@ -160,7 +152,7 @@
 وجودك خلي لحياتي نور ومخلي حياتي كلها طاقه يا مصدر طاقتي ومصدر سعادتي ومش هنسي اول يوم قولت اكلمك 25/5/2026 وقولتي هعطل وكلمتك والحمدلله معطلتيش بجد وجودك غير حياتي للاحسن واحلي حاجة حصلت اني عرفتك يا هدية ربنا ليا ومش هنسي اول يوم قبلتك 28/5/2026 كان احلي يوم في حياتي لما شوفت حلاوتك وروحك القمر في عيونك وتقولي متبصش بس اقولك انا ابص براحتي كدا كدا بجد يوم ميلادك يوم ما الدنيا بقي ليها معني ولما ربنا بعتك ليا حياتي بقت ملك الدنيا يمززززتي بحبك يا نونتي وكل سنة وانتي طيبة وعبال سنين كتيره جاية وكدا كدا سوووو يا جزمة ياللي شندلتي قلبي بضحكتك وخطفتي قلبي بس بجد قلبي مبسوط :) انك انتي اللي خطفتيه بحبك يا نونتي تتتي ❤️</p>
         </div>
 
-        <!-- عداد الوقت (محسوب من 15 أبريل 2026) -->
+        <!-- عداد الوقت -->
         <div class="info-box" style="text-align: center;">
             <h3 style="margin-top: 0;">⏳ مع بعض من يوم ما عرفتك (15/4/2026):</h3>
             <p id="timeTogether" style="font-weight: bold; font-size: 16px;">جاري الحساب...</p>
@@ -189,7 +181,7 @@
 
     <script>
         function openEnvelope() {
-            document.querySelector('.envelope-container').style.display = 'none';
+            document.getElementById('envelopeContainer').style.display = 'none';
             document.getElementById('loginSection').style.display = 'block';
         }
 
@@ -224,7 +216,7 @@
             const seconds = Math.floor((diff / 1000) % 60);
 
             document.getElementById("timeTogether").innerText = 
-                ${days} يوم و ${hours} ساعة و ${minutes} دقيقة و ${seconds} ثانية ❤️;
+                `${days} يوم و ${hours} ساعة و ${minutes} دقيقة و ${seconds} ثانية ❤️`;
         }
 
         setInterval(updateTimer, 1000);
