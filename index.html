@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هدية خاصة لـ Nona 💖</title>
+    <title>هدية خاصة لـ نونا 💖</title>
     <style>
         body {
             background: linear-gradient(135deg, #ff758c, #ff7eb3);
@@ -19,14 +19,57 @@
         }
         .box {
             background: rgba(255, 255, 255, 0.15);
-            padding: 30px;
+            padding: 25px;
             border-radius: 20px;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.18);
             width: 90%;
-            max-width: 450px;
+            max-width: 500px;
             margin: 20px;
+        }
+        /* تصميم الجواب المقفول */
+        .envelope-container {
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .envelope-container:hover {
+            transform: scale(1.05);
+        }
+        .envelope {
+            background: #fff;
+            width: 140px;
+            height: 100px;
+            margin: 0 auto 20px auto;
+            position: relative;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-left: 70px solid transparent;
+            border-right: 70px solid transparent;
+            border-top: 55px solid #ff477e;
+        }
+        .heart-seal {
+            font-size: 35px;
+            position: relative;
+            z-index: 2;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .login-section {
+            display: none;
         }
         input {
             padding: 12px;
@@ -56,159 +99,120 @@
         .hidden-content {
             display: none;
         }
-        .counter-box, .message-box, .photo-box {
+        .info-box, .message-box, .gallery {
             background: rgba(0, 0, 0, 0.2);
             padding: 15px;
             border-radius: 12px;
             margin-top: 15px;
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.8;
+            text-align: right;
         }
-        img {
+        .message-box p {
+            white-space: pre-line;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .gallery img {
             width: 100%;
-            max-height: 250px;
+            height: 140px;
             object-fit: cover;
-            border-radius: 10px;
-            margin-top: 10px;
+            border-radius: 8px;
+            border: 2px solid #fff;
         }
     </style>
 </head>
 <body>
 
-    <!-- شاشة إدخال كلمة السر -->
+    <!-- شاشة الجواب الأولية -->
     <div class="box" id="envelopeBox">
-    <div class="envelope-container" onclick="openEnvelope()">
-        <div class="envelope">
-            <div class="heart-seal">💖</div>
+        <div class="envelope-container" onclick="openEnvelope()">
+            <div class="envelope">
+                <div class="heart-seal">💖</div>
+            </div>
+            <h2>اضغطي هنا لفتح الجواب 💌</h2>
         </div>
-        <h2>اضغطي هنا لفتح الجواب 💌</h2>
+
+        <!-- خانة كلمة السر تظهر عند النقر على الجواب -->
+        <div class="login-section" id="loginSection">
+            <h2>🎁 هدية خاصة جداً</h2>
+            <p>اكتبي كلمة السر الخاصة بنا لفتح الهدية:</p>
+            <input type="password" id="passInput" placeholder="كلمة السر...">
+            <br>
+            <button onclick="checkPassword()">افتحي الهدية</button>
+            <p id="errorMsg" style="color: #ffeb3b; font-size: 14px; margin-top: 10px;"></p>
+        </div>
     </div>
-
-    <!-- خانة كلمة السر تظهر عند النقر على الجواب -->
-    <div class="login-section" id="loginSection" style="display: none;">
-        <h2>🎁 هدية خاصة جداً</h2>
-        <p>اكتبي كلمة السر الخاصة بنا لفتح الهدية:</p>
-        <input type="password" id="passInput" placeholder="كلمة السر...">
-        <br>
-        <button onclick="checkPassword()">افتحي الهدية</button>
-        <p id="errorMsg" style="color: #ffeb3b; font-size: 14px; margin-top: 10px;"></p>
-    </div>
-</div>
-
-<style>
-    /* تصميم الجواب المقفول */
-    .envelope-container {
-        cursor: pointer;
-        transition: transform 0.3s;
-    }
-    .envelope-container:hover {
-        transform: scale(1.05);
-    }
-    .envelope {
-        background: #fff;
-        width: 140px;
-        height: 100px;
-        margin: 0 auto 20px auto;
-        position: relative;
-        border-radius: 5px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .envelope::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        border-left: 70px solid transparent;
-        border-right: 70px solid transparent;
-        border-top: 55px solid #ff477e;
-    }
-    .heart-seal {
-        font-size: 35px;
-        position: relative;
-        z-index: 2;
-        animation: pulse 1.5s infinite;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
-    }
-</style>
-
-<script>
-    function openEnvelope() {
-        document.querySelector('.envelope-container').style.display = 'none';
-        document.getElementById('loginSection').style.display = 'block';
-    }
-</script>
 
     <!-- المحتوى بعد فتح الهدية -->
     <div class="box hidden-content" id="contentBox">
-        <h1>🎉كل سنة وأنتِ طيبة يا نونتي! 💖</h1>
+        <h1 style="text-align: center;">🎉 كل سنة وأنتِ طيبة يا نونا! 💖</h1>
         
-        <!-- رسالة الحب -->
+        <!-- رسالة الحب الخاصة بك -->
         <div class="message-box">
-            <p>أكل سنة وانتي طيبة يا نونتي وفي عيد ميلادك حبيت اقولك كل سنة وانتي معايا وكل سنة وانتي نور عيني وكل سنة وانتي قلبي وعقلي يا وردة اغسطس يا احلي صدفة جابتها ليا الدنيا وربنا بعتها ليا ويحقق ليكي كل اللي بتتمنيه يا حظ ايامي ويا حظ قلبي يوم ما عرفك 15/4/2026 وجودك خلي لحياتي نور ومخلي حياتي كلها طاقه يا مصدر طاقتي ومصدر سعادتي ومش هنسي اول يوم قولت اكلمك 25/5/2026 وقولتي هعطل وكلمتك والحمدلله معطلتيش بجد وجود غير حياتي للاحسن واحلي حاجة حصلت اني عرفتك يا هدية ربنا ليا ومش هنسي اول يوم قبلتك 28/5/2026 كان احلي يوم في حياتي لما شوفت حلاوتك وروحك القمر في عيونك وتقولي متبصش بس اقولك انا ابص براحتي كدا كدا بجد يوم ميلاك يوم ما الدنيا بقي ليه معني ولما ربنا بعتك ليا حياتي بقيت ملك الدنيا يمززززتي بحبك يا نونتي وكل سنة وانتي طيبة وعبال سنين كتيره جاية وكدا كدا سوووو يا جزمة ياللي شندلتي قلبي بضحكتك وخطفتي قلبي بس بجد قلبي مبسوط
-(: انك انتي اللي خطفتيه بحبك يا نونتتنتي.</p>
+            <h3 style="text-align: center; margin-top: 0;">💌 رسلتي ليكِ يا نونتي</h3>
+            <p>كل سنة وانتي طيبة يا نونتي وفي عيد ميلادك حبيت اقولك كل سنة وانتي معايا وكل سنة وانتي نور عيني وكل سنة وانتي قلبي وعقلي يا وردة اغسطس يا احلي صدفة جابتها ليا الدنيا وربنا بعتها ليا ويحقق ليكي كل اللي بتتمنيه يا حظ ايامي ويا حظ قلبي يوم ما عرفك 15/4/2026. 
+
+وجودك خلي لحياتي نور ومخلي حياتي كلها طاقه يا مصدر طاقتي ومصدر سعادتي ومش هنسي اول يوم قولت اكلمك 25/5/2026 وقولتي هعطل وكلمتك والحمدلله معطلتيش بجد وجودك غير حياتي للاحسن واحلي حاجة حصلت اني عرفتك يا هدية ربنا ليا ومش هنسي اول يوم قبلتك 28/5/2026 كان احلي يوم في حياتي لما شوفت حلاوتك وروحك القمر في عيونك وتقولي متبصش بس اقولك انا ابص براحتي كدا كدا بجد يوم ميلادك يوم ما الدنيا بقي ليها معني ولما ربنا بعتك ليا حياتي بقت ملك الدنيا يمززززتي بحبك يا نونتي وكل سنة وانتي طيبة وعبال سنين كتيره جاية وكدا كدا سوووو يا جزمة ياللي شندلتي قلبي بضحكتك وخطفتي قلبي بس بجد قلبي مبسوط :) انك انتي اللي خطفتيه بحبك يا نونتي تتتي ❤️</p>
         </div>
 
-        <!-- عداد الوقت منذ بداية العلاقة -->
-        <div class="counter-box">
-            <h3>⏳ مع بعض منذ:</h3>
-            <p id="timeTogether">جاري حساب الأوقات الجميلة...</p>
+        <!-- عداد الوقت (محسوب من 15 أبريل 2026) -->
+        <div class="info-box" style="text-align: center;">
+            <h3 style="margin-top: 0;">⏳ مع بعض من يوم ما عرفتك (15/4/2026):</h3>
+            <p id="timeTogether" style="font-weight: bold; font-size: 16px;">جاري الحساب...</p>
         </div>
 
-        <!-- قسم العمر أو تاريخ الميلاد -->
-        <div class="counter-box">
-            <h3>🎂 عيد ميلاد سعيد لـ Nona</h3>
-            <p>سنة حلوة تشبه جمال عيونك وقلبك الأبيض.</p>
-        </div>
-
-        <!-- قسم الصور (يمكنك استبدال الرابط برابط صورة حقيقية أو رفعها لاحقاً) -->
-        <div class="photo-box">
-            <h3>📸 أجمل ذكرياتنا</h3>
-            <img src=" <img src="image_6.png" alt="ذكرى 1">
+        <!-- معرض الصور الخاص بك -->
+        <div class="info-box">
+            <h3 style="text-align: center; margin-top: 0;">📸 أجمل ذكرياتنا معاً</h3>
+            <div class="gallery">
+                <img src="image_6.png" alt="ذكرى 1">
                 <img src="image_7.png" alt="ذكرى 2">
                 <img src="image_8.png" alt="ذكرى 3">
                 <img src="image_9.png" alt="ذكرى 4">
                 <img src="image_10.png" alt="ذكرى 5">
                 <img src="image_11.png" alt="ذكرى 6">
                 <img src="image_12.png" alt="ذكرى 7">
-                <img src="image_13.png" alt="ذكرى 8">" alt="Memory Photo">
+                <img src="image_13.png" alt="ذكرى 8">
+            </div>
         </div>
     </div>
 
     <!-- عنصر الصوت والأغنية -->
     <audio id="loveSong" loop>
-        <!-- يمكنك تغيير رابط الأغنية بأغنيتكم المفضلة بصيغة mp3 -->
-        <source src="https://st.tktkat.com/files/18414.mp3" type="audio/mp3">
+        <source src="Https://st.tktkat.com/files/18414.mp3" type="audio/mp3">
     </audio>
 
     <script>
+        function openEnvelope() {
+            document.querySelector('.envelope-container').style.display = 'none';
+            document.getElementById('loginSection').style.display = 'block';
+        }
+
         function checkPassword() {
-            // كلمة السر (يمكنك تغييرها هنا)
             const correctPassword = "nona"; 
             const userPassword = document.getElementById("passInput").value;
 
             if (userPassword === correctPassword) {
-                document.getElementById("loginBox").style.display = "none";
+                document.getElementById("envelopeBox").style.display = "none";
                 document.getElementById("contentBox").style.display = "block";
                 
-                // تشغيل الأغنية تلقائياً عند فتح الهدية
+                // تشغيل الأغنية تلقائياً
                 var song = document.getElementById("loveSong");
                 song.play().catch(error => {
-                    console.log("Audio play prevented by browser");
+                    console.log("Audio play prevented");
                 });
             } else {
                 document.getElementById("errorMsg").innerText = "كلمة السر غير صحيحة، جربي تاني!";
             }
         }
 
-        // عداد الوقت (قم بتعديل تاريخ بداية العلاقة هنا سنة-شهر-يوم)
-        const startDate = new Date("14-5-2026");
+        // تاريخ بداية العلاقة: 15 أبريل 2026
+        const startDate = new Date("2026-04-15T00:00:00"); 
 
         function updateTimer() {
             const now = new Date();
