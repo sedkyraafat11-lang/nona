@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هدية خاصة لـ Nona</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            font-family: 'Tahoma', sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+        .box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            width: 320px;
+        }
+        input {
+            padding: 12px;
+            width: 80%;
+            border-radius: 25px;
+            border: none;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 16px;
+            outline: none;
+        }
+        button {
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: none;
+            background-color: #fff;
+            color: #ff477e;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #ff477e;
+            color: #fff;
+        }
+        .hidden-content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box" id="loginBox">
+        <h2>🎁 هدية مقفولة</h2>
+        <p>اكتبي كلمة السر (تاريخ ميلادكم أو ذكرى مميزة) لفتح الهدية:</p>
+        <input type="password" id="passInput" placeholder="كلمة السر...">
+        <br>
+        <button onclick="checkPassword()">فتح الهدية</button>
+        <p id="errorMsg" style="color: #ffeb3b; font-size: 14px; margin-top: 10px;"></p>
+    </div>
+
+    <div class="box hidden-content" id="contentBox">
+        <h1>🎉 كل سنة وأنتِ طيبة يا نونا! 💖</h1>
+        <p>هذه المساحة مخصصة لكِ وحدك، لأقول لكِ كم أنتِ غالية وجميلة في حياتي.</p>
+        <p>أتمنى لكِ سنة سعيدة مليئة بالفرح والنجاح.</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            // استبدل "1234" بكلمة السر التي تفضلها (مثل تاريخ أو رقم سري)
+            const correctPassword = "1234"; 
+            const userPassword = document.getElementById("passInput").value;
+
+            if (userPassword === correctPassword) {
+                document.getElementById("loginBox").style.display = "none";
+                document.getElementById("contentBox").style.display = "block";
+            } else {
+                document.getElementById("errorMsg").innerText = "كلمة السر غير صحيحة، جربي مرة أخرى!";
+            }
+        }
+    </script>
+
+</body>
+</html>
