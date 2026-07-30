@@ -24,7 +24,7 @@
             position: relative;
         }
 
-        /* خلفية الموقع المأخوذة من الصورة المرفوعة مع تأثير الـ Blur */
+        /* خلفية الموقع المغبشة (Blur) */
         .bg-image {
             position: fixed;
             top: 0;
@@ -34,12 +34,11 @@
             background-image: url('image.png');
             background-size: cover;
             background-position: center;
-            filter: blur(10px) brightness(0.45); /* تغبيش وتغميش عشان وضوح النص */
+            filter: blur(10px) brightness(0.45);
             transform: scale(1.1);
             z-index: -2;
         }
 
-        /* طبقة عتمة إضافية تزيد التنسيق */
         .overlay {
             position: fixed;
             top: 0;
@@ -187,11 +186,11 @@
             margin-bottom: 25px;
         }
         
-        /* جاليري الصور المصغر للتقليب */
+        /* جاليري الصور بالروابط المباشرة */
         .slider-container {
             position: relative;
             width: 100%;
-            height: 260px;
+            height: 280px;
             margin-bottom: 20px;
             border-radius: 15px;
             overflow: hidden;
@@ -255,6 +254,7 @@
     <div class="overlay"></div>
 
     <div class="wrapper">
+        <!-- شاشة الباسورد -->
         <div class="card" id="loginCard">
             <div class="envelope-graphic">
                 <div class="heart-seal">💖</div>
@@ -267,20 +267,24 @@
             <div id="errorMsg"></div>
         </div>
 
+        <!-- محتوى الموقع -->
         <div class="card" id="mainCard" style="display: none;">
             
+            <!-- الخطوة 1 -->
             <div class="step-content active-step" id="step1">
                 <h2>🎉 مفاجأة ليكِ يا نونتي</h2>
                 <p style="font-size: 22px; margin: 35px 0; color: #ff758c; font-weight: bold; text-shadow: 0 0 10px rgba(255,117,140,0.5);">Happy birthday NoNa ♥️</p>
                 <button class="btn" onclick="nextStep()">التالي ✨</button>
             </div>
 
+            <!-- الخطوة 2 -->
             <div class="step-content" id="step2">
                 <h2>💌 رسلتي ليكِ</h2>
                 <div class="typed-message" id="typedText"></div>
                 <button class="btn" onclick="nextStep()">التالي ✨</button>
             </div>
 
+            <!-- الخطوة 3 -->
             <div class="step-content" id="step3">
                 <h2>⏳ مدة علاقتنا معاً</h2>
                 <p style="font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 12px;">من أول يوم عرفتك فيه (15/4/2026)</p>
@@ -288,17 +292,20 @@
                 <button class="btn" onclick="nextStep()">التالي ✨</button>
             </div>
 
+            <!-- الخطوة 4: الصور بالروابط المباشرة الجديدة -->
             <div class="step-content" id="step4">
                 <h2>📸 ذكرياتنا الحلوة</h2>
                 <div class="slider-container">
-                    <img src="image_6.png" class="active-img" alt="1">
-                    <img src="image_7.png" alt="2">
-                    <img src="image_8.png" alt="3">
-                    <img src="image_9.png" alt="4">
-                    <img src="image_10.png" alt="5">
-                    <img src="image_11.png" alt="6">
-                    <img src="image_12.png" alt="7">
-                    <img src="image_13.png" alt="8">
+                    <img src="https://i.postimg.cc/pmGFhJtD/d3a4827d-ae5e-4c6f-b892-b63fc4f993d4.jpg" class="active-img" alt="1">
+                    <img src="https://i.postimg.cc/hzbxjW4Q/IMG-1965.jpg" alt="2">
+                    <img src="https://i.postimg.cc/K3GT3q4j/IMG-1966.jpg" alt="3">
+                    <img src="https://i.postimg.cc/ZBF3RtYY/IMG-1970.jpg" alt="4">
+                    <img src="https://i.postimg.cc/grVLqWWZ/IMG-1972.jpg" alt="5">
+                    <img src="https://i.postimg.cc/1Vrg9pHK/IMG-2979.jpg" alt="6">
+                    <img src="https://i.postimg.cc/BtTPc006/IMG-3825.jpg" alt="7">
+                    <img src="https://i.postimg.cc/CdGnHgV9/IMG-3831.jpg" alt="8">
+                    <img src="https://i.postimg.cc/hJX79QDg/IMG-3841.jpg" alt="9">
+                    <img src="https://i.postimg.cc/RNmfj0RZ/IMG-3858.jpg" alt="10">
                     <div class="slider-btns">
                         <button onclick="prevImage()">❮</button>
                         <button onclick="nextImage()">❯</button>
@@ -307,6 +314,7 @@
                 <button class="btn" onclick="nextStep()">التالي ✨</button>
             </div>
 
+            <!-- الخطوة 5 -->
             <div class="step-content" id="step5">
                 <div class="final-msg">
                     انا بحبك يا حياتي ودايما سوووا ♥️😘
@@ -317,6 +325,7 @@
         </div>
     </div>
 
+    <!-- الأغنية -->
     <audio id="loveSong" loop>
         <source src="https://st.tktkat.com/files/18414.mp3" type="audio/mp3">
     </audio>
