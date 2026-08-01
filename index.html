@@ -6,35 +6,50 @@
     <title>Happy Birthday NoNa 💖</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* --- المتغيرات العامة والتنسيق الأساسي --- */
+        :root {
+            --primary-color: #ff758c; /* اللون الوردي الأساسي */
+            --secondary-color: #ff7eb3; /* اللون الوردي الثانوي */
+            --bg-dark: #0b090c; /* الخلفية الداكنة */
+            --card-bg: rgba(20, 15, 25, 0.85); /* خلفية البطاقة الشفافة */
+            --text-light: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(255, 255, 255, 0.2);
+            --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.9);
+            --font-main: 'Cairo', sans-serif;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
-            background-color: #0b090c;
-            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-dark);
+            font-family: var(--font-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
+            color: var(--text-light);
             padding: 20px;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* خلفية الموقع المغبشة */
+        /* --- الخلفية والتمويه --- */
         .bg-image {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://i.postimg.cc/pmGFhJtD/d3a4827d-ae5e-4c6f-b892-b63fc4f993d4.jpg');
+            /* رابط الخلفية المغبشة الجديد */
+            background-image: url('https://i.postimg.cc/C1k2C9v7/IMG-4523-1.jpg');
             background-size: cover;
             background-position: center;
-            filter: blur(10px) brightness(0.45);
+            filter: blur(12px) brightness(0.4);
             transform: scale(1.1);
             z-index: -2;
         }
@@ -45,43 +60,49 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             z-index: -1;
         }
 
+        /* --- الحاوية الرئيسية --- */
         .wrapper {
             width: 100%;
             max-width: 550px;
             z-index: 2;
         }
-        
+
+        /* --- تنسيق البطاقات العامة --- */
         .card {
-            background: rgba(20, 15, 25, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             padding: 40px 25px;
             border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(20px);
             text-align: center;
             animation: fadeIn 0.8s ease;
+            display: none; /* مخفية افتراضياً حتى يتم تسجيل الدخول */
         }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
+        /* --- أيقونة الظرف --- */
         .envelope-graphic {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.1);
             width: 170px;
             height: 115px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 25px auto;
             position: relative;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--border-color);
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .envelope-graphic::before {
             content: "";
             position: absolute;
@@ -89,130 +110,158 @@
             left: 0;
             border-left: 85px solid transparent;
             border-right: 85px solid transparent;
-            border-top: 60px solid rgba(255, 117, 140, 0.4);
+            border-top: 60px solid rgba(255, 117, 140, 0.5);
         }
+
         .heart-seal {
             font-size: 32px;
             position: relative;
             z-index: 2;
-            background: #ff758c;
+            background: var(--primary-color);
             width: 45px;
             height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            box-shadow: 0 0 15px #ff758c;
+            box-shadow: 0 0 15px var(--primary-color);
             animation: pulse 1.5s infinite;
         }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.15); }
             100% { transform: scale(1); }
         }
-        
-        input {
+
+        /* --- العناصر المشتركة (Titles, Buttons, Inputs) --- */
+        h2 {
+            color: var(--primary-color);
+            font-size: 26px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 12px rgba(255, 117, 140, 0.5);
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        input.text-input {
             padding: 14px 20px;
             width: 85%;
             border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             margin-bottom: 15px;
             text-align: center;
             font-size: 16px;
             outline: none;
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--text-light);
+            font-family: var(--font-main);
         }
-        
+
         .btn {
             padding: 12px 30px;
             border-radius: 30px;
             border: none;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
-            color: #fff;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
             font-weight: 700;
             font-size: 16px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
-            transition: 0.3s;
-            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(255, 117, 140, 0.5);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            font-family: var(--font-main);
         }
+
         .btn:hover {
-            opacity: 0.9;
+            opacity: 0.95;
             transform: translateY(-2px);
         }
-        
+
+        #errorMsg {
+            color: #ff5252;
+            font-size: 15px;
+            margin-top: 12px;
+            font-weight: 700;
+        }
+
+        /* --- تنسيق الخطوات --- */
         .step-content {
             display: none;
-            text-align: center;
             animation: fadeIn 0.6s ease;
         }
+
         .active-step {
             display: block;
         }
-        
-        h2 {
-            color: #ff758c;
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255,117,140,0.3);
-        }
-        
+
+        /* --- الصفحة 2: الرسالة --- */
         .typed-message {
-            font-size: 15px;
+            font-size: 16px;
             line-height: 1.9;
-            color: rgba(255, 255, 255, 0.95);
-            background: rgba(0, 0, 0, 0.4);
-            padding: 18px;
+            color: var(--text-light);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
             border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid var(--border-color);
             text-align: right;
-            min-height: 170px;
-            max-height: 250px;
+            min-height: 190px;
+            max-height: 280px;
             overflow-y: auto;
             white-space: pre-line;
             margin-bottom: 20px;
+            direction: rtl;
         }
-        
+
+        /* --- الصفحة 3: العداد --- */
         .timer-box {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: bold;
             color: #ffeb3b;
-            background: rgba(0,0,0,0.4);
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 22px;
             border-radius: 15px;
-            border: 1px dashed rgba(255,235,59,0.4);
+            border: 1px dashed rgba(255, 235, 59, 0.6);
             margin-bottom: 25px;
         }
-        
-        /* جاليري الصور الأساسي */
+
+        /* --- الصفحة 4: الجاليري الجديد --- */
         .slider-container {
             position: relative;
             width: 100%;
-            height: 320px;
+            height: 350px;
             margin-bottom: 20px;
             border-radius: 15px;
             overflow: hidden;
-            border: 2px solid rgba(255,255,255,0.2);
+            border: 3px solid rgba(255, 255, 255, 0.3);
             background: #050507;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 25px rgba(255, 117, 140, 0.4);
         }
+
         .slider-container img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
             display: none;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.3s ease;
         }
+
         .slider-container img:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
+
         .slider-container img.active-img {
             display: block;
         }
+
         .slider-btns {
             display: flex;
             justify-content: space-between;
@@ -220,27 +269,30 @@
             top: 50%;
             width: 100%;
             transform: translateY(-50%);
-            padding: 0 10px;
+            padding: 0 15px;
             pointer-events: none;
             z-index: 10;
         }
+
         .slider-btns button {
             pointer-events: auto;
-            background: rgba(0,0,0,0.7);
-            color: #fff;
+            background: rgba(0, 0, 0, 0.75);
+            color: var(--text-light);
             border: none;
-            width: 38px;
-            height: 38px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
             transition: 0.3s;
-        }
-        .slider-btns button:hover {
-            background: #ff758c;
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
-        /* نافذة التكبير بحجم الموبايل بالكامل (Fullscreen Modal) */
+        .slider-btns button:hover {
+            background: var(--primary-color);
+        }
+
+        /* --- نافذة التكبير (Modal) --- */
         .modal {
             display: none;
             position: fixed;
@@ -249,11 +301,12 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(0, 0, 0, 0.98);
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
+
         .modal-content-wrapper {
             position: relative;
             width: 100%;
@@ -261,27 +314,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 60px 15px 40px 15px;
+            padding: 70px 20px 50px 20px;
         }
+
         .modal img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(255, 117, 140, 0.4);
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255, 117, 140, 0.6);
         }
-        /* أزرار التقليب الخاصة بنافذة التكبير */
+
         .modal-nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.15);
-            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
             border: none;
-            width: 45px;
-            height: 45px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
-            font-size: 22px;
+            font-size: 28px;
             cursor: pointer;
             z-index: 10000;
             display: flex;
@@ -290,23 +344,25 @@
             backdrop-filter: blur(5px);
             transition: 0.3s;
         }
+
         .modal-nav-btn:hover {
-            background: #ff758c;
+            background: var(--primary-color);
         }
-        .modal-prev { right: 15px; }
-        .modal-next { left: 15px; }
+
+        .modal-prev { right: 25px; }
+        .modal-next { left: 25px; }
 
         .close-modal {
             position: absolute;
             top: 15px;
-            left: 20px;
-            color: #fff;
-            font-size: 35px;
+            left: 25px;
+            color: var(--text-light);
+            font-size: 45px;
             font-weight: bold;
             cursor: pointer;
-            background: rgba(255,255,255,0.15);
-            width: 45px;
-            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -314,23 +370,31 @@
             z-index: 10001;
             transition: 0.3s;
         }
+
         .close-modal:hover {
             background: #ff5252;
         }
 
+        /* --- الصفحة الأخيرة: الرسالة النهائية --- */
         .final-msg {
-            font-size: 24px;
+            font-size: 30px;
             font-weight: bold;
-            color: #ff758c;
-            line-height: 1.8;
-            margin: 25px 0;
-            text-shadow: 0 0 15px rgba(255,117,140,0.5);
+            color: var(--primary-color);
+            line-height: 1.7;
+            margin: 30px 0;
+            text-shadow: 0 0 20px rgba(255, 117, 140, 0.7);
         }
-        #errorMsg {
-            color: #ff5252;
-            font-size: 14px;
-            margin-top: 10px;
-            font-weight: 600;
+
+        /* --- استعلامات الوسائط (Mobile Responsiveness) --- */
+        @media (max-width: 600px) {
+            h2 { font-size: 22px; }
+            .card { padding: 30px 15px; }
+            .typed-message { font-size: 14px; min-height: 160px; }
+            .timer-box { font-size: 14px; padding: 15px; }
+            .slider-container { height: 250px; }
+            .envelope-graphic { width: 140px; height: 95px; }
+            .envelope-graphic::before { border-left: 70px solid transparent; border-right: 70px solid transparent; border-top: 50px solid rgba(255, 117, 140, 0.5); }
+            .heart-seal { width: 40px; height: 40px; font-size: 28px; }
         }
     </style>
 </head>
@@ -339,190 +403,10 @@
     <div class="bg-image"></div>
     <div class="overlay"></div>
 
+    <!-- نافذة تكبير الصور -->
     <div id="imageModal" class="modal">
         <span class="close-modal" onclick="closeModal()">&times;</span>
         <div class="modal-content-wrapper">
             <button class="modal-nav-btn modal-prev" onclick="modalPrevImage()">❮</button>
-            <img id="modalImg" src="" alt="Fullscreen Zoom">
-            <button class="modal-nav-btn modal-next" onclick="modalNextImage()">❯</button>
-        </div>
-    </div>
-
-    <div class="wrapper">
-        <div class="card" id="loginCard">
-            <div class="envelope-graphic">
-                <div class="heart-seal">💖</div>
-            </div>
-            <h2 style="font-size: 20px; margin-bottom: 5px;">هدية خاصة جداً لـ نونا 💌</h2>
-            <p style="color: rgba(255,255,255,0.7); font-size: 13px; margin-bottom: 20px;">اكتبي كلمة السر لفتح سحر الهدية</p>
-            <input type="password" id="passInput" placeholder="اكتبي كلمة السر هنا...">
-            <br>
-            <button class="btn" onclick="checkPassword()">دخول 🤍</button>
-            <div id="errorMsg"></div>
-        </div>
-
-        <div class="card" id="mainCard" style="display: none;">
-            
-            <div class="step-content active-step" id="step1">
-                <h2>🎉 مفاجأة ليكِ يا نونتي</h2>
-                <p style="font-size: 22px; margin: 35px 0; color: #ff758c; font-weight: bold; text-shadow: 0 0 10px rgba(255,117,140,0.5);">Happy birthday NoNa ♥️</p>
-                <button class="btn" onclick="nextStep()">التالي ✨</button>
-            </div>
-
-            <div class="step-content" id="step2">
-                <h2>💌 رسلتي ليكِ</h2>
-                <div class="typed-message" id="typedText"></div>
-                <button class="btn" onclick="nextStep()">التالي ✨</button>
-            </div>
-
-            <div class="step-content" id="step3">
-                <h2>⏳ مدة علاقتنا معاً</h2>
-                <p style="font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 12px;">من أول يوم عرفتك فيه (15/4/2026)</p>
-                <div class="timer-box" id="timeTogether">جاري الحساب...</div>
-                <button class="btn" onclick="nextStep()">التالي ✨</button>
-            </div>
-
-            <div class="step-content" id="step4">
-                <h2>📸 ذكرياتنا الحلوة</h2>
-                <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">(اضغط على أي صورة لتكبيرها وملء الشاشة)</p>
-                <div class="slider-container">
-                    <img src="https://i.postimg.cc/pmGFhJtD/d3a4827d-ae5e-4c6f-b892-b63fc4f993d4.jpg" class="active-img" alt="1" onclick="openModal(0)">
-                    <img src="https://i.postimg.cc/hzbxjW4Q/IMG-1965.jpg" alt="2" onclick="openModal(1)">
-                    <img src="https://i.postimg.cc/K3GT3q4j/IMG-1966.jpg" alt="3" onclick="openModal(2)">
-                    <img src="https://i.postimg.cc/ZBF3RtYY/IMG-1970.jpg" alt="4" onclick="openModal(3)">
-                    <img src="https://i.postimg.cc/grVLqWWZ/IMG-1972.jpg" alt="5" onclick="openModal(4)">
-                    <img src="https://i.postimg.cc/1Vrg9pHK/IMG-2979.jpg" alt="6" onclick="openModal(5)">
-                    <img src="https://i.postimg.cc/BtTPc006/IMG-3825.jpg" alt="7" onclick="openModal(6)">
-                    <img src="https://i.postimg.cc/CdGnHgV9/IMG-3831.jpg" alt="8" onclick="openModal(7)">
-                    <img src="https://i.postimg.cc/hJX79QDg/IMG-3841.jpg" alt="9" onclick="openModal(8)">
-                    <img src="https://i.postimg.cc/RNmfj0RZ/IMG-3858.jpg" alt="10" onclick="openModal(9)">
-                    <div class="slider-btns">
-                        <button onclick="prevImage()">❮</button>
-                        <button onclick="nextImage()">❯</button>
-                    </div>
-                </div>
-                <button class="btn" onclick="nextStep()">التالي ✨</button>
-            </div>
-
-            <div class="step-content" id="step5">
-                <div class="final-msg">
-                    انا بحبك يا حياتي ودايما سوووا ♥️😘
-                </div>
-                <p style="color: rgba(255,255,255,0.8); margin-top: 15px; font-size: 15px;">كل سنة وأنتي منورة حياتي وعيد ميلاد سعيد يا أجمل نونا!</p>
-            </div>
-
-        </div>
-    </div>
-
-    <audio id="loveSong" loop>
-        <source src="https://st.tktkat.com/files/18414.mp3" type="audio/mp3">
-    </audio>
-
-    <script>
-        function checkPassword() {
-            const pass = document.getElementById('passInput').value;
-            if (pass === "nona") {
-                document.getElementById('loginCard').style.display = 'none';
-                document.getElementById('mainCard').style.display = 'block';
-                
-                var song = document.getElementById("loveSong");
-                song.play().catch(e => console.log("Audio play blocked"));
-            } else {
-                document.getElementById('errorMsg').innerText = "❌ كلمة السر خطأ، جربي تاني يا قلبي!";
-            }
-        }
-
-        let currentStep = 1;
-        const totalSteps = 5;
-
-        function nextStep() {
-            document.getElementById(`step${currentStep}`).classList.remove('active-step');
-            currentStep++;
-            if (currentStep <= totalSteps) {
-                document.getElementById(`step${currentStep}`).classList.add('active-step');
-                
-                if (currentStep === 2 && !isTyped) {
-                    startTyping();
-                }
-            }
-        }
-
-        const message = `كل سنة وانتي طيبة يا نونتي وفي عيد ميلادك حبيت اقولك كل سنة وانتي معايا وكل سنة وانتي نور عيني وكل سنة وانتي قلبي وعقلي يا وردة اغسطس يا احلي صدفة جابتها ليا الدنيا وربنا بعتها ليا ويحقق ليكي كل اللي بتتمنيه يا حظ ايامي ويا حظ قلبي يوم ما عرفك 15/4/2026. 
-
-وجودك خلي لحياتي نور ومخلي حياتي كلها طاقه يا مصدر طاقتي ومصدر سعادتي ومش هنسي اول يوم قولت اكلمك 25/5/2026 وقولتي هعطل وكلمتك والحمدلله معطلتيش بجد وجودك غير حياتي للاحسن واحلي حاجة حصلت اني عرفتك يا هدية ربنا ليا ومش هنسي اول يوم قبلتك 28/5/2026 كان احلي يوم في حياتي لما شوفت حلاوتك وروحك القمر في عيونك وتقولي متبصش بس اقولك انا ابص براحتي كدا كدا بجد يوم ميلادك يوم ما الدنيا بقي ليها معني ولما ربنا بعتك ليا حياتي بقت ملك الدنيا يمززززتي بحبك يا نونتي وكل سنة وانتي طيبة وعبال سنين كتيره جاية وكدا كدا سوووو يا جزمة ياللي شندلتي قلبي بضحكتك وخطفتي قلبي بس بجد قلبي مبسوط :) انك انتي اللي خطفتيه بحبك يا نونتي تتتي ❤️`;
-
-        let isTyped = false;
-        function startTyping() {
-            isTyped = true;
-            let i = 0;
-            const speed = 25;
-            function typeWriter() {
-                if (i < message.length) {
-                    document.getElementById("typedText").innerHTML += message.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, speed);
-                }
-            }
-            typeWriter();
-        }
-
-        const startDate = new Date("2026-04-15T00:00:00");
-        function updateTimer() {
-            const now = new Date();
-            const diff = now - startDate;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / 1000 / 60) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
-
-            document.getElementById("timeTogether").innerText = 
-                `${days} يوم ⏳ | ${hours} ساعة ⏰ | ${minutes} دقيقة ⏱️ | ${seconds} ثانية ❤️`;
-        }
-        setInterval(updateTimer, 1000);
-        updateTimer();
-
-        const images = document.querySelectorAll('.slider-container img');
-        let currentImg = 0;
-
-        function showImage(index) {
-            images.forEach(img => img.classList.remove('active-img'));
-            images[index].classList.add('active-img');
-        }
-
-        function nextImage() {
-            currentImg = (currentImg + 1) % images.length;
-            showImage(currentImg);
-        }
-
-        function prevImage() {
-            currentImg = (currentImg - 1 + images.length) % images.length;
-            showImage(currentImg);
-        }
-
-        // دوال التحكم بنافذة التكبير بكامل الشاشة مع إمكانية التقليب بداخله
-        function openModal(index) {
-            currentImg = index;
-            const modal = document.getElementById("imageModal");
-            const modalImg = document.getElementById("modalImg");
-            modal.style.display = "flex";
-            modalImg.src = images[currentImg].src;
-        }
-
-        function closeModal() {
-            document.getElementById("imageModal").style.display = "none";
-        }
-
-        function modalNextImage() {
-            currentImg = (currentImg + 1) % images.length;
-            document.getElementById("modalImg").src = images[currentImg].src;
-            showImage(currentImg); // تحديث خلف السلايدر أيضاً
-        }
-
-        function modalPrevImage() {
-            currentImg = (currentImg - 1 + images.length) % images.length;
-            document.getElementById("modalImg").src = images[currentImg].src;
-            showImage(currentImg); // تحديث خلف السلايدر أيضاً
-        }
-    </script>
-</body>
-</html>
+            <img id="modalImg" src="" alt="Fullscreen View">
+            <button class="modal-nav-btn modal-next" onclick="
