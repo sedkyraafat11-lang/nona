@@ -51,7 +51,7 @@
 
         .wrapper {
             width: 100%;
-            max-width: 580px;
+            max-width: 550px;
             z-index: 2;
         }
         
@@ -240,7 +240,7 @@
             background: #ff758c;
         }
 
-        /* نافذة التكبير بحجم الموبايل بالكامل */
+        /* نافذة التكبير بحجم الموبايل بالكامل (Fullscreen Modal) */
         .modal {
             display: none;
             position: fixed;
@@ -317,49 +317,17 @@
             background: #ff5252;
         }
 
-        /* تنسيق قسم خط السير والصور المحيطة بيه بتقنية الـ Blur */
+        /* تنسيق قسم خط السير (Timeline) داخل الخطوات */
         .timeline-container {
             display: none;
             margin: 20px auto;
             padding: 15px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.1);
             text-align: right;
             direction: rtl;
             animation: fadeIn 0.5s ease-in-out;
-        }
-
-        /* إطار الصور المحيطة بخط السير مع تأثيرات الـ Blur والوضوح */
-        .timeline-surround-gallery {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            padding: 5px;
-            flex-wrap: wrap;
-        }
-
-        .timeline-surround-gallery img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            filter: blur(4px) brightness(0.6);
-            transform: scale(0.9);
-            transition: all 0.6s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        /* الصورة الفعالة والواضحة وقت عرضها */
-        .timeline-surround-gallery img.active-surround {
-            filter: blur(0px) brightness(1.1);
-            transform: scale(1.15);
-            border-color: #ff758c;
-            box-shadow: 0 0 15px rgba(255, 117, 140, 0.8);
-            z-index: 5;
         }
 
         .timeline {
@@ -487,46 +455,12 @@
                 <button class="btn" onclick="nextStep()">التالي ✨</button>
             </div>
 
+            <!-- خطوة حكايتنا (أصبحت قبل عرض الصور) -->
             <div class="step-content" id="step4">
-                <h2>📸 ذكرياتنا الحلوة</h2>
-                <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">(اضغط على أي صورة لتكبيرها وملء الشاشة)</p>
-                <div class="slider-container">
-                    <img src="https://i.postimg.cc/pmGFhJtD/d3a4827d-ae5e-4c6f-b892-b63fc4f993d4.jpg" class="active-img" alt="1" onclick="openModal(0)">
-                    <img src="https://i.postimg.cc/hzbxjW4Q/IMG-1965.jpg" alt="2" onclick="openModal(1)">
-                    <img src="https://i.postimg.cc/K3GT3q4j/IMG-1966.jpg" alt="3" onclick="openModal(2)">
-                    <img src="https://i.postimg.cc/ZBF3RtYY/IMG-1970.jpg" alt="4" onclick="openModal(3)">
-                    <img src="https://i.postimg.cc/grVLqWWZ/IMG-1972.jpg" alt="5" onclick="openModal(4)">
-                    <img src="https://i.postimg.cc/1Vrg9pHK/IMG-2979.jpg" alt="6" onclick="openModal(5)">
-                    <img src="https://i.postimg.cc/BtTPc006/IMG-3825.jpg" alt="7" onclick="openModal(6)">
-                    <img src="https://i.postimg.cc/CdGnHgV9/IMG-3831.jpg" alt="8" onclick="openModal(7)">
-                    <img src="https://i.postimg.cc/hJX79QDg/IMG-3841.jpg" alt="9" onclick="openModal(8)">
-                    <img src="https://i.postimg.cc/RNmfj0RZ/IMG-3858.jpg" alt="10" onclick="openModal(9)">
-                    <div class="slider-btns">
-                        <button onclick="prevImage()">❮</button>
-                        <button onclick="nextImage()">❯</button>
-                    </div>
-                </div>
-                <button class="btn" onclick="nextStep()">التالي ✨</button>
-            </div>
-
-            <!-- خطوة حكايتنا مع شريط الصور المحيطة المحدث (Blur & New Images) -->
-            <div class="step-content" id="step5">
-                <h2>✨ مفاجأة إضافية</h2>
+                <h2>✨ محطات حكايتنا</h2>
                 <button class="btn" onclick="toggleTimeline()">حكايتنا ❤️</button>
                 
                 <div id="timelineSection" class="timeline-container">
-                    
-                    <!-- شريط الصور المصغرة المتحركة (الصور الأصلية + الصور الجديدة اللي بعتها) -->
-                    <div class="timeline-surround-gallery" id="surroundGallery">
-                        <img src="https://i.postimg.cc/pmGFhJtD/d3a4827d-ae5e-4c6f-b892-b63fc4f993d4.jpg" class="active-surround" alt="1">
-                        <img src="https://i.postimg.cc/hzbxjW4Q/IMG-1965.jpg" alt="2">
-                        <img src="https://i.postimg.cc/K3GT3q4j/IMG-1966.jpg" alt="3">
-                        <!-- الصور الجديدة اللي طلبها -->
-                        <img src="https://i.ibb.co/qYjDh3hp/photo1.jpg" alt="New 1">
-                        <img src="https://i.ibb.co/C53pN3M7/photo2.jpg" alt="New 2">
-                        <img src="https://i.ibb.co/skRN3zV/photo3.jpg" alt="New 3">
-                    </div>
-
                     <h3 style="color: #ff758c; font-size: 18px; margin-bottom: 15px; text-align: center;">محطات حكايتنا</h3>
                     <div class="timeline">
                         
@@ -565,6 +499,29 @@
                 </div>
 
                 <br><br>
+                <button class="btn" onclick="nextStep()">التالي ✨</button>
+            </div>
+
+            <!-- خطوة عرض الصور (أصبحت بعد حكايتنا) -->
+            <div class="step-content" id="step5">
+                <h2>📸 ذكرياتنا الحلوة</h2>
+                <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">(اضغط على أي صورة لتكبيرها وملء الشاشة)</p>
+                <div class="slider-container">
+                    <img src="https://i.postimg.cc/pmGFhJtD/d3a4827d-ae5e-4c6f-b892-b63fc4f993d4.jpg" class="active-img" alt="1" onclick="openModal(0)">
+                    <img src="https://i.postimg.cc/hzbxjW4Q/IMG-1965.jpg" alt="2" onclick="openModal(1)">
+                    <img src="https://i.postimg.cc/K3GT3q4j/IMG-1966.jpg" alt="3" onclick="openModal(2)">
+                    <img src="https://i.postimg.cc/ZBF3RtYY/IMG-1970.jpg" alt="4" onclick="openModal(3)">
+                    <img src="https://i.postimg.cc/grVLqWWZ/IMG-1972.jpg" alt="5" onclick="openModal(4)">
+                    <img src="https://i.postimg.cc/1Vrg9pHK/IMG-2979.jpg" alt="6" onclick="openModal(5)">
+                    <img src="https://i.postimg.cc/BtTPc006/IMG-3825.jpg" alt="7" onclick="openModal(6)">
+                    <img src="https://i.postimg.cc/CdGnHgV9/IMG-3831.jpg" alt="8" onclick="openModal(7)">
+                    <img src="https://i.postimg.cc/hJX79QDg/IMG-3841.jpg" alt="9" onclick="openModal(8)">
+                    <img src="https://i.postimg.cc/RNmfj0RZ/IMG-3858.jpg" alt="10" onclick="openModal(9)">
+                    <div class="slider-btns">
+                        <button onclick="prevImage()">❮</button>
+                        <button onclick="nextImage()">❯</button>
+                    </div>
+                </div>
                 <button class="btn" onclick="nextStep()">التالي ✨</button>
             </div>
 
@@ -611,32 +568,14 @@
             }
         }
 
-        let surroundInterval = null;
-
         function toggleTimeline() {
             var section = document.getElementById("timelineSection");
             if (section.style.display === "block") {
                 section.style.display = "none";
-                clearInterval(surroundInterval);
             } else {
                 section.style.display = "block";
                 section.scrollIntoView({ behavior: 'smooth' });
-                startSurroundGallery();
             }
-        }
-
-        function startSurroundGallery() {
-            const surroundImgs = document.querySelectorAll('#surroundGallery img');
-            if (surroundImgs.length === 0) return;
-            
-            let activeIdx = 0;
-            if (surroundInterval) clearInterval(surroundInterval);
-
-            surroundInterval = setInterval(() => {
-                surroundImgs.forEach(img => img.classList.remove('active-surround'));
-                activeIdx = (activeIdx + 1) % surroundImgs.length;
-                surroundImgs[activeIdx].classList.add('active-surround');
-            }, 2000);
         }
 
         const message = `كل سنة وانتي طيبة يا نونتي وفي عيد ميلادك حبيت اقولك كل سنة وانتي معايا وكل سنة وانتي نور عيني وكل سنة وانتي قلبي وعقلي يا وردة اغسطس يا احلي صدفة جابتها ليا الدنيا وربنا بعتها ليا ويحقق ليكي كل اللي بتتمنيه يا حظ ايامي ويا حظ قلبي يوم ما عرفك 15/4/2026. 
