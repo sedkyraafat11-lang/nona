@@ -270,7 +270,6 @@
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(255, 117, 140, 0.4);
         }
-        /* أزرار التقليب الخاصة بنافذة التكبير */
         .modal-nav-btn {
             position: absolute;
             top: 50%;
@@ -316,6 +315,80 @@
         }
         .close-modal:hover {
             background: #ff5252;
+        }
+
+        /* تنسيق قسم خط السير (Timeline) داخل الخطوات */
+        .timeline-container {
+            display: none;
+            margin: 20px auto;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: right;
+            direction: rtl;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .timeline {
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 8px;
+            top: 5px;
+            bottom: 5px;
+            width: 3px;
+            background: #ff758c;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -21px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border: 3px solid #ff758c;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 117, 140, 0.8);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h4 {
+            margin: 0 0 3px;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .timeline-content span {
+            color: #ff758c;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .timeline-end {
+            text-align: center;
+            font-weight: bold;
+            color: #ff758c;
+            font-size: 16px;
+            margin-top: 15px;
         }
 
         .final-msg {
@@ -404,7 +477,54 @@
                 <button class="btn" onclick="nextStep()">التالي ✨</button>
             </div>
 
+            <!-- خطوة حكايتنا (الزرار وخط السير الزمني) -->
             <div class="step-content" id="step5">
+                <h2>✨ مفاجأة إضافية</h2>
+                <button class="btn" onclick="toggleTimeline()">حكايتنا ❤️</button>
+                
+                <div id="timelineSection" class="timeline-container">
+                    <h3 style="color: #ff758c; font-size: 18px; margin-bottom: 15px; text-align: center;">محطات حكايتنا</h3>
+                    <div class="timeline">
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4>اول مرة اكلمك</h4>
+                                <span>15 / 4 / 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4>اول مرة اكلمك مكالمة</h4>
+                                <span>25 / 5 / 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4>اول مقابلة</h4>
+                                <span>28 / 5 / 2026</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4>اول مكالمة فيديو</h4>
+                                <span>22 / 6 / 2026</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="timeline-end">
+                        ✨ وحكايتنا لسه مكملة ✨
+                    </div>
+                </div>
+
+                <br><br>
+                <button class="btn" onclick="nextStep()">التالي ✨</button>
+            </div>
+
+            <div class="step-content" id="step6">
                 <div class="final-msg">
                     انا بحبك يا حياتي ودايما سوووا ♥️😘
                 </div>
@@ -433,7 +553,7 @@
         }
 
         let currentStep = 1;
-        const totalSteps = 5;
+        const totalSteps = 6; // تم تحديث إجمالي الخطوات لتشمل قسم حكايتنا
 
         function nextStep() {
             document.getElementById(`step${currentStep}`).classList.remove('active-step');
@@ -444,6 +564,17 @@
                 if (currentStep === 2 && !isTyped) {
                     startTyping();
                 }
+            }
+        }
+
+        // دالة إظهار وإخفاء خط السير عند الضغط على زر حكايتنا
+        function toggleTimeline() {
+            var section = document.getElementById("timelineSection");
+            if (section.style.display === "block") {
+                section.style.display = "none";
+            } else {
+                section.style.display = "block";
+                section.scrollIntoView({ behavior: 'smooth' });
             }
         }
 
@@ -499,7 +630,6 @@
             showImage(currentImg);
         }
 
-        // دوال التحكم بنافذة التكبير بكامل الشاشة مع إمكانية التقليب بداخله
         function openModal(index) {
             currentImg = index;
             const modal = document.getElementById("imageModal");
@@ -515,13 +645,13 @@
         function modalNextImage() {
             currentImg = (currentImg + 1) % images.length;
             document.getElementById("modalImg").src = images[currentImg].src;
-            showImage(currentImg); // تحديث خلف السلايدر أيضاً
+            showImage(currentImg);
         }
 
         function modalPrevImage() {
             currentImg = (currentImg - 1 + images.length) % images.length;
             document.getElementById("modalImg").src = images[currentImg].src;
-            showImage(currentImg); // تحديث خلف السلايدر أيضاً
+            showImage(currentImg);
         }
     </script>
 </body>
