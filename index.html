@@ -1,66 +1,1586 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>هدية لمون ❤️</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+/* =========================
+   الخطوط
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Great+Vibes&display=swap');
+
+
+/* =========================
+   الأساسيات
+========================= */
 
 *{
+    margin:0;
+    padding:0;
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-    margin:0;
-    min-height:100vh;
+
     font-family:'Cairo',sans-serif;
+
+    min-height:100vh;
+
+    color:#542331;
+
     background:
-        radial-gradient(circle at top,#ffe9f0,#f8d5df 45%,#d99aaa);
-    color:#542633;
+    radial-gradient(circle at 20% 20%, #fff 0%, transparent 25%),
+    radial-gradient(circle at 80% 80%, #ffd1df 0%, transparent 30%),
+    linear-gradient(
+        135deg,
+        #fff0f5,
+        #ffdce7,
+        #f4bdcf
+    );
+
     overflow-x:hidden;
 }
 
+
+/* =========================
+   الخلفية
+========================= */
+
+.background-glow{
+
+    position:fixed;
+
+    width:400px;
+    height:400px;
+
+    border-radius:50%;
+
+    background:#ffffff55;
+
+    filter:blur(80px);
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+.glow1{
+    top:-150px;
+    left:-150px;
+}
+
+.glow2{
+    bottom:-150px;
+    right:-150px;
+}
+
+
+/* =========================
+   الصفحات
+========================= */
+
 .page{
-    min-height:100vh;
+
     display:none;
+
+    min-height:100vh;
+
+    padding:30px 15px;
+
     align-items:center;
     justify-content:center;
-    padding:25px;
+
     position:relative;
+
 }
 
 .page.active{
+
     display:flex;
+
+    animation:pageIn 1s ease;
+
 }
+
+@keyframes pageIn{
+
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================
+   الكارت
+========================= */
 
 .card{
-    width:min(92vw,700px);
-    background:rgba(255,255,255,.9);
-    backdrop-filter:blur(10px);
-    border-radius:28px;
-    padding:34px 25px;
-    box-shadow:0 20px 60px rgba(80,25,40,.22);
+
+    width:min(92vw,720px);
+
+    padding:40px 30px;
+
     text-align:center;
+
+    background:#ffffffdd;
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid #ffffff;
+
+    border-radius:35px;
+
+    box-shadow:
+
+        0 25px 70px #7e304522,
+
+        inset 0 0 30px #ffffff88;
+
 }
 
+
+/* =========================
+   العناوين
+========================= */
+
 h1{
-    margin:0 0 10px;
-    font-size:34px;
+
+    font-size:36px;
+
+    color:#7e3049;
+
+    margin-bottom:15px;
+
+}
+
+h2{
+
+    color:#9a405d;
+
 }
 
 .subtitle{
-    color:#8b5262;
+
+    color:#966273;
+
+    line-height:2;
+
+}
+
+
+/* =========================
+   الظرف
+========================= */
+
+.envelope-container{
+
+    margin-bottom:20px;
+
 }
 
 .envelope{
-    font-size:100px;
-    filter:drop-shadow(0 12px 10px #b87989);
-    animation:float 2.4s ease-in-out infinite;
+
+    font-size:120px;
+
+    display:inline-block;
+
+    filter:drop-shadow(
+        0 15px 15px #8c385533
+    );
+
+    animation:
+
+        envelopeFloat 2.5s infinite ease-in-out,
+
+        envelopeGlow 2s infinite;
+
 }
 
-@keyframes float{
+@keyframes envelopeFloat{
+
+    0%,100%{
+        transform:translateY(0) rotate(0);
+    }
+
     50%{
-        
+        transform:translateY(-12px) rotate(-3deg);
+    }
+
+}
+
+@keyframes envelopeGlow{
+
+    50%{
+        filter:
+        drop-shadow(
+            0 15px 25px #c74f7555
+        );
+    }
+
+}
+
+
+/* =========================
+   الأزرار
+========================= */
+
+.btn{
+
+    border:none;
+
+    padding:15px 35px;
+
+    margin-top:25px;
+
+    border-radius:50px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #a63d60,
+        #7e2948
+    );
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 25px #8c304633;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+    box-shadow:
+        0 15px 30px #8c304655;
+
+}
+
+.btn:active{
+
+    transform:scale(.97);
+
+}
+
+
+/* =========================
+   كلمة السر
+========================= */
+
+.lock{
+
+    font-size:75px;
+
+    animation:lockMove 2s infinite;
+
+}
+
+@keyframes lockMove{
+
+    50%{
+        transform:rotate(5deg) scale(1.05);
+    }
+
+}
+
+.password{
+
+    width:min(330px,90%);
+
+    margin:20px auto;
+
+    padding:15px 20px;
+
+    border-radius:18px;
+
+    border:2px solid #edc0cf;
+
+    background:#fffafa;
+
+    outline:none;
+
+    text-align:center;
+
+    font-family:inherit;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.password:focus{
+
+    border-color:#a63d60;
+
+    box-shadow:
+        0 0 0 4px #a63d6015;
+
+}
+
+.error{
+
+    min-height:25px;
+
+    color:#c43159;
+
+}
+
+
+/* =========================
+   الرسالة
+========================= */
+
+.letter{
+
+    text-align:right;
+
+    font-size:19px;
+
+    line-height:2.3;
+
+}
+
+.letter-title{
+
+    text-align:center;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#8e3452;
+
+    margin-bottom:25px;
+
+}
+
+.letter p{
+
+    margin-bottom:12px;
+
+}
+
+.signature{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    font-size:27px;
+
+    font-weight:700;
+
+    color:#9d3657;
+
+}
+
+
+/* =========================
+   العداد
+========================= */
+
+.timer{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:14px;
+
+    margin:30px 0;
+
+}
+
+.time-box{
+
+    padding:20px 8px;
+
+    border-radius:22px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #fff,
+            #ffeaf1
+        );
+
+    box-shadow:
+        0 8px 20px #8e36521a;
+
+}
+
+.number{
+
+    display:block;
+
+    font-size:35px;
+
+    font-weight:700;
+
+    color:#9d3657;
+
+}
+
+.label{
+
+    font-size:14px;
+
+    color:#8e6470;
+
+}
+
+
+/* =========================
+   الصور
+========================= */
+
+.gallery{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+.photo{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    aspect-ratio:1/1;
+
+    box-shadow:
+        0 10px 25px #71304522;
+
+}
+
+.photo img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:
+        transform .7s;
+
+}
+
+.photo:hover img{
+
+    transform:scale(1.08);
+
+}
+
+
+/* =========================
+   النهاية
+========================= */
+
+.big-heart{
+
+    font-size:100px;
+
+    animation:heartBeat 1.2s infinite;
+
+}
+
+@keyframes heartBeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.15);
+    }
+
+}
+
+
+/* =========================
+   القلوب الطائرة
+========================= */
+
+#hearts{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:100;
+
+}
+
+.heart{
+
+    position:absolute;
+
+    bottom:-50px;
+
+    animation:
+        heartRise linear forwards;
+
+    opacity:.75;
+
+}
+
+@keyframes heartRise{
+
+    to{
+
+        transform:
+            translateY(-115vh)
+            rotate(35deg);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* =========================
+   النجوم
+========================= */
+
+.sparkle{
+
+    position:absolute;
+
+    color:white;
+
+    animation:
+        sparkle 2s infinite;
+
+}
+
+@keyframes sparkle{
+
+    0%,100%{
+        opacity:.2;
+        transform:scale(.7);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.3);
+    }
+
+}
+
+
+/* =========================
+   موبايل
+========================= */
+
+@media(max-width:600px){
+
+    h1{
+        font-size:28px;
+    }
+
+    .card{
+        padding:30px 18px;
+        border-radius:28px;
+    }
+
+    .envelope{
+        font-size:95px;
+    }
+
+    .letter{
+        font-size:16px;
+        line-height:2.15;
+    }
+
+    .letter-title{
+        font-size:20px;
+    }
+
+    .timer{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .number{
+        font-size:28px;
+    }
+
+    .gallery{
+        gap:10px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- الخلفية -->
+
+<div class="background-glow glow1"></div>
+<div class="background-glow glow2"></div>
+
+<div id="hearts"></div>
+
+
+<!-- =========================
+     الأغنية
+========================= -->
+
+<audio
+    id="loveSong"
+    src="song.mp3"
+    loop>
+</audio>
+
+
+<!-- =========================
+     الصفحة 1
+========================= -->
+
+<section
+    class="page active"
+    id="page1">
+
+    <div class="card">
+
+        <div class="envelope-container">
+
+            <div class="envelope">
+                💌
+            </div>
+
+        </div>
+
+        <h1>
+            هدية لمون ❤️
+        </h1>
+
+        <p class="subtitle">
+
+            جواب صغير من قلبي ليك...
+
+            <br>
+
+            بس جواه حكاية كبيرة
+            أوي ❤️
+
+        </p>
+
+        <button
+            class="btn"
+            onclick="openGift()">
+
+            افتح هديتك 💗
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     الصفحة 2
+========================= -->
+
+<section
+    class="page"
+    id="page2">
+
+    <div class="card">
+
+        <div class="lock">
+            🔐
+        </div>
+
+        <h1>
+            الجواب ليك أنت بس
+        </h1>
+
+        <p class="subtitle">
+
+            اكتب كلمة السر
+            عشان تفتح هديتك ❤️
+
+        </p>
+
+        <input
+            id="password"
+            class="password"
+            type="password"
+            placeholder="كلمة السر">
+
+        <div
+            class="error"
+            id="error">
+        </div>
+
+        <button
+            class="btn"
+            onclick="checkPassword()">
+
+            افتح قلبي ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     الصفحة 3 الرسالة
+========================= -->
+
+<section
+    class="page"
+    id="page3">
+
+    <div class="card">
+
+        <h1>
+            إلى روحي وحبيبي ❤️
+        </h1>
+
+        <div class="letter">
+
+            <div class="letter-title">
+
+                إلى روحي التي تمشي
+                خارج جسدي،
+                وحبيبي الذي لا يشبه أحدًا...
+
+            </div>
+
+            <p>
+
+                في يوم ميلادك لا أشعر
+                أبدًا أنك وُلدت فقط،
+                بل أشعر أنني منذ هذا اليوم
+                رأيت الحياة،
+                الحياة بكل جمالها بك أنت.
+
+            </p>
+
+            <p>
+
+                كل عام وأنت من جعل
+                للحياة معنى،
+                ولقلبي وطنًا،
+                ولروحي سكينة.
+
+            </p>
+
+            <p>
+
+                كل عام وأنت خيري
+                الذي أواجه الدنيا به.
+
+            </p>
+
+            <p>
+
+                كل سنة وأنت الحضن
+                اللي محوطني،
+                ميحرمنيش منك أبدًا،
+                يديمك دايمًا جمبي.
+
+            </p>
+
+            <p>
+
+                بحبببببك ♥️♥️
+
+            </p>
+
+        </div>
+
+        <div class="signature">
+
+            كل سنة وأنت حبيبي
+            يا مون 🎂❤️
+
+        </div>
+
+        <button
+            class="btn"
+            onclick="showPage(4)">
+
+            كمّل الحكاية ✨
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     الصفحة 4 العداد
+========================= -->
+
+<section
+    class="page"
+    id="page4">
+
+    <div class="card">
+
+        <h1>
+
+            من يوم ما بدأت حكايتنا ❤️
+
+        </h1>
+
+        <p class="subtitle">
+
+            من 2 / 11 / 2017
+            ولحد اللحظة دي...
+
+        </p>
+
+
+        <div class="timer">
+
+
+            <div class="time-box">
+
+                <span
+                    class="number"
+                    id="years">
+
+                    0
+
+                </span>
+
+                <span class="label">
+                    سنة
+                </span>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <span
+                    class="number"
+                    id="months">
+
+                    0
+
+                </span>
+
+                <span class="label">
+                    شهر
+                </span>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <span
+                    class="number"
+                    id="days">
+
+                    0
+
+                </span>
+
+                <span class="label">
+                    يوم
+                </span>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <span
+                    class="number"
+                    id="hours">
+
+                    0
+
+                </span>
+
+                <span class="label">
+                    ساعة
+                </span>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <span
+                    class="number"
+                    id="minutes">
+
+                    0
+
+                </span>
+
+                <span class="label">
+                    دقيقة
+                </span>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <span
+                    class="number"
+                    id="seconds">
+
+                    0
+
+                </span>
+
+                <span class="label">
+                    ثانية
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <p class="subtitle">
+
+            وكل ثانية عدّت،
+            كانت بتقربني منك أكتر ❤️
+
+        </p>
+
+
+        <button
+            class="btn"
+            onclick="showPage(5)">
+
+            ذكرياتنا 📸
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     الصفحة 5 الصور
+========================= -->
+
+<section
+    class="page"
+    id="page5">
+
+    <div class="card">
+
+        <h1>
+            ذكرياتنا 📸❤️
+        </h1>
+
+        <p class="subtitle">
+
+            كل صورة فيها حكاية،
+            وكل حكاية فيها أنت.
+
+        </p>
+
+
+        <div class="gallery">
+
+
+            <div class="photo">
+
+                <img
+                    src="photos/photo1.jpg"
+                    alt="ذكرى">
+
+            </div>
+
+
+            <div class="photo">
+
+                <img
+                    src="photos/photo2.jpg"
+                    alt="ذكرى">
+
+            </div>
+
+
+            <div class="photo">
+
+                <img
+                    src="photos/photo3.jpg"
+                    alt="ذكرى">
+
+            </div>
+
+
+            <div class="photo">
+
+                <img
+                    src="photos/photo4.jpg"
+                    alt="ذكرى">
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            class="btn"
+            onclick="showPage(6)">
+
+            آخر حاجة ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     الصفحة الأخيرة
+========================= -->
+
+<section
+    class="page"
+    id="page6">
+
+    <div class="card">
+
+        <div class="big-heart">
+            ❤️
+        </div>
+
+
+        <h1>
+
+            ولسه الحكاية
+            مكملة...
+
+        </h1>
+
+
+        <p
+            class="subtitle"
+            style="
+            font-size:20px;
+            margin-top:20px;
+            ">
+
+            من 2 / 11 / 2017
+            <br>
+
+            ولحد العمر كله ❤️
+
+        </p>
+
+
+        <p
+            style="
+            line-height:2.2;
+            margin-top:20px;
+            ">
+
+            أنا اخترتك،
+            وهفضل أختارك كل يوم.
+
+            <br>
+
+            وفي كل مرة
+            هختارك من أول وجديد.
+
+        </p>
+
+
+        <div class="signature">
+
+            بحبك يا مون
+            ♥️
+
+        </div>
+
+
+        <button
+            class="btn"
+            onclick="showPage(1)">
+
+            نرجع لأول الحكاية 💌
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+
+/* =========================
+   تشغيل الأغنية
+========================= */
+
+function openGift(){
+
+    const song =
+        document.getElementById("loveSong");
+
+    song.volume = 0.55;
+
+    /*
+       لأن المتصفح يمنع autoplay،
+       الأغنية تبدأ هنا بمجرد
+       ضغط المستخدم على الزر.
+    */
+
+    song.play().catch(function(error){
+
+        console.log(
+            "الصوت يحتاج تفاعل من المستخدم"
+        );
+
+    });
+
+
+    showPage(2);
+
+}
+
+
+
+/* =========================
+   الانتقال بين الصفحات
+========================= */
+
+function showPage(number){
+
+    document
+    .querySelectorAll(".page")
+    .forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+
+    const target =
+        document.getElementById(
+            "page" + number
+        );
+
+
+    target.classList.add("active");
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+
+/* =========================
+   كلمة السر
+========================= */
+
+function checkPassword(){
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value.trim();
+
+
+    const error =
+        document.getElementById(
+            "error"
+        );
+
+
+    if(password === "mena"){
+
+        error.textContent="";
+
+        showPage(3);
+
+    }
+
+    else{
+
+        error.textContent =
+            "كلمة السر مش صح ❤️ حاول تاني";
+
+    }
+
+}
+
+
+
+/* Enter */
+
+document
+.getElementById("password")
+.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            checkPassword();
+
+        }
+
+    }
+);
+
+
+
+/* =========================
+   عداد العلاقة
+========================= */
+
+function updateTimer(){
+
+    const start =
+        new Date(
+            2017,
+            10,
+            2,
+            0,
+            0,
+            0
+        );
+
+
+    const now =
+        new Date();
+
+
+    let years =
+        now.getFullYear()
+        -
+        start.getFullYear();
+
+
+    let anniversary =
+        new Date(start);
+
+
+    anniversary.setFullYear(
+        start.getFullYear()
+        +
+        years
+    );
+
+
+    if(anniversary > now){
+
+        years--;
+
+        anniversary =
+            new Date(start);
+
+        anniversary.setFullYear(
+            start.getFullYear()
+            +
+            years
+        );
+
+    }
+
+
+    let months =
+        (
+            now.getFullYear()
+            -
+            anniversary.getFullYear()
+        )
+        *
+        12
+        +
+        now.getMonth()
+        -
+        anniversary.getMonth();
+
+
+    let monthDate =
+        new Date(anniversary);
+
+
+    monthDate.setMonth(
+        anniversary.getMonth()
+        +
+        months
+    );
+
+
+    if(monthDate > now){
+
+        months--;
+
+        monthDate =
+            new Date(anniversary);
+
+        monthDate.setMonth(
+            anniversary.getMonth()
+            +
+            months
+        );
+
+    }
+
+
+    let remaining =
+        now - monthDate;
+
+
+    const DAY =
+        24 * 60 * 60 * 1000;
+
+    const HOUR =
+        60 * 60 * 1000;
+
+    const MINUTE =
+        60 * 1000;
+
+
+    const days =
+        Math.floor(
+            remaining / DAY
+        );
+
+
+    remaining %= DAY;
+
+
+    const hours =
+        Math.floor(
+            remaining / HOUR
+        );
+
+
+    remaining %= HOUR;
+
+
+    const minutes =
+        Math.floor(
+            remaining / MINUTE
+        );
+
+
+    const seconds =
+        Math.floor(
+            (remaining % MINUTE)
+            / 1000
+        );
+
+
+    document
+    .getElementById("years")
+    .textContent = years;
+
+
+    document
+    .getElementById("months")
+    .textContent = months;
+
+
+    document
+    .getElementById("days")
+    .textContent = days;
+
+
+    document
+    .getElementById("hours")
+    .textContent = hours;
+
+
+    document
+    .getElementById("minutes")
+    .textContent = minutes;
+
+
+    document
+    .getElementById("seconds")
+    .textContent = seconds;
+
+}
+
+
+updateTimer();
+
+
+setInterval(
+    updateTimer,
+    1000
+);
+
+
+
+/* =========================
+   القلوب المتحركة
+========================= */
+
+function createHeart(){
+
+    const heart =
+        document.createElement("span");
+
+
+    heart.className =
+        "heart";
+
+
+    const hearts = [
+
+        "❤️",
+        "💗",
+        "💕",
+        "💖",
+        "💘",
+        "🌹"
+
+    ];
+
+
+    heart.textContent =
+        hearts[
+            Math.floor(
+                Math.random()
+                *
+                hearts.length
+            )
+        ];
+
+
+    heart.style.left =
+        Math.random() * 100
+        +
+        "%";
+
+
+    heart.style.fontSize =
+        (
+            14
+            +
+            Math.random() * 22
+        )
+        +
+        "px";
+
+
+    heart.style.animationDuration =
+        (
+            5
+            +
+            Math.random() * 6
+        )
+        +
+        "s";
+
+
+    document
+    .getElementById("hearts")
+    .appendChild(heart);
+
+
+    setTimeout(
+        function(){
+
+            heart.remove();
+
+        },
+        11000
+    );
+
+}
+
+
+setInterval(
+    createHeart,
+    650
+);
+
+
+
+</script>
+
+
+</body>
+
+</html>
